@@ -1,2 +1,1 @@
-# app
-Simple Application template for creating a project with Supranim
+Simple Application template for creating your next project powered by Supranim.
