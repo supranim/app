@@ -97,4 +97,4 @@ App(
 
 ```
 
-<a href="https://hetzner.cloud/?ref=Hm0mYGM9NxZ4"><img src="/.github/support.png" width="640px"></a>
+<a href="https://hetzner.cloud/?ref=Hm0mYGM9NxZ4"><img src="/.github/support.png" width="100%"></a>
