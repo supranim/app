@@ -54,7 +54,6 @@ proc error500(resp: var Response, req: var Request): Response =
     ## A simple procedure for handling 500 errors
     return resp Http404, "500 - Internal Error"
 
-
 Router.get("/", homepage)
 Router.get("/about", aboutUs)
 # A route can be protected by providing one or more Middlewares.
@@ -97,4 +96,41 @@ App(
 
 ```
 
+# Benchmarks
+Supranim is one of the fastest web frameworks around. Fully written in Nim language, fluent and clean! A simple benchmark test using `wrk` for a simple **Supranim** app without multi-threading will you get around **140K requests/sec**
+
+```bash
+wrk -t2 -c10 -d15s http://127.0.0.1:3399
+
+Running 15s test @ http://127.0.0.1:3399
+    2 threads and 10 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+        Latency   124.45us   29.90us 696.00us   78.18%
+        Req/Sec    73.31k     2.31k   76.53k    85.43%
+    2203041 requests in 15.10s, 233.21MB read
+--------------------------------------------------------
+Requests/sec:     145898.16
+Transfer/sec:       15.44MB
+```
+
+
+# Made with Supranim
+
+<strong>OpenPeep</strong><br>
+We're heavily using Supranim for our secondary project, **OpenPeep** an Open Source Non-Governmental Organization that helps communities to digitize and speed up their services with various projects mainly licensed under `GPLv3` and `AGPL`. [Check OpenPeep on Github](https://github.com/openpeep)
+
+<strong>OVAI</strong><br>
+Ovai is a high-performance platform that allows romanian growers to sell and deliver their products directly to their customers without intermediaries or speculative prices.
+
+<strong>VASCO</strong><br>
+The website maker for painters, photographers, sculptors, calligraphers, illustrators, printmakers, and graphic designers. Vasco is an alternative to Cargo, Wix, Squarespace and other SaaS platforms.
+
 <a href="https://hetzner.cloud/?ref=Hm0mYGM9NxZ4"><img src="/.github/hetzner.png" width="100%"></a>
+
+**What / Why Nim?**<br>
+_Nim is a statically typed compiled systems programming language. It combines successful concepts from mature languages like Python, Ada and Modula. [Find out more about Nim](https://nim-lang.org/)_
+
+Performance, fast compilation and C-like freedom. I want to keep code clean, readable, concise, and close to my intention. Also a very good language to learn in 2021.
+
+## License
+...
