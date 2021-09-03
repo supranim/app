@@ -1,0 +1,84 @@
+# Service Providers - YML Config file
+
+# Based on this Configuration file you can add, enable or disable
+# any service at any time, based on your project needs.
+
+# Your Application Services
+app:
+    # A sample Service Provider to get you started with Supranim ecosystem
+    sample:
+        service: "SampleServiceProvider"
+        enabled: true
+
+# The Supranim Built-in Service providers
+# All these providers are part of the Supranim core
+default:
+    # PostgreSQL, SQlite or MySQL database support
+    database:
+        name: DatabaseServiceProvider
+        enabled: true
+
+    # PostgreSQL ORM for poets
+    enmisql:
+        name: "EnimsqlServiceProvider"
+        enabled: true
+        requires:
+            - DatabaseServiceProvider
+
+    # Adds a simple http authentication including
+    # sign up and sign in, forgot and reset password, and user roles
+    auth:
+        name: "AuthServiceProvider"
+        enabled: true
+        requires:
+            - DatabaseServiceProvider
+            - CookieServiceProvider
+            - EventServiceProvider
+            - SchedulerServiceProvider
+
+    # Event system handler to listen and trigger various actions
+    events:
+        name: "EventServiceProvider"
+        enabled: true
+
+    # Multi-threading schedules aka CronJobs
+    schedules:
+        name: "SchedulerServiceProvider"
+        enabled: true
+    
+    # Http Cookie Support on backend and clientside
+    cookie:
+        name: "CookieServiceProvider"
+        mode: "runtime"
+        enabled: true
+
+    # Add Multi-language Support based on simple Yaml
+    locale:
+        name: "LocaleServiceProvider"
+        mode: "compile"
+        enabled: true
+    
+    # Form submission data handler
+    form:
+        name: "FormServiceProvider"
+        mode: "runtime"
+        enabled: false
+
+    # Input & String Validation Support
+    validator:
+        name: "InputServiceProvider"
+        mode: "runtime"
+        enabled: false
+        requires:
+            - FormServiceProvider
+
+    # Botland Handler determine if the current request is made by a human or a bot.
+    # Extends Router functionality by adding a new layer so GET
+    # responses can be separated for both cases, where bots
+    # will always receive a text-only & markup contents
+    botland:
+        name: "BotlandServiceProvider"
+        mode: "runtime"
+        enabled: true
+        requires:
+            - FrontendServiceProvider

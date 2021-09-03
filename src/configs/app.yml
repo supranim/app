@@ -1,0 +1,13 @@
+name: @env.app.name
+description: "Just a bloody Supranim Application"
+timezone: "UTC"
+
+# Default Locale
+locale:
+    default: "en_US"
+    fallback: "en_US"
+
+# Application Security key & cipher
+security:
+    app_key: @env.app.key
+    cipher: "AES-256-CBC"

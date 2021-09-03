@@ -1,0 +1,10 @@
+# Headings
+heading_hi_username: "Hello $1"
+heading_your_account: "Your Account"
+heading_your_orders: "Your Orders"
+heading_your_address: "Your Address"
+
+# Buttons
+btn_update_account: "Update your Account"
+btn_update_address: "Update your Address"
+btn_your_orders: "Go to your Orders"
