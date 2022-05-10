@@ -8,12 +8,6 @@ srcDir        = "src"
 bin           = @["supranim_app"]
 binDir        = "bin"
 
-# requires "tim"
-
-
-# Supranim Tasks
-# https://nim-lang.org/docs/nims.html
-
 after build:
     exec "clear"
 
@@ -29,3 +23,4 @@ task up, "Start Application":
 # Dependencies
 requires "nim >= 1.4.8"
 requires "supranim >= 0.1.0"
+requires "tim"
