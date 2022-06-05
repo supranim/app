@@ -1,4 +1,5 @@
-import supranim
+import supranim/response
 
 proc homepage*(req: Request, res: Response) =
-    res.response("")
+    ## ``GET`` procedure to render the homepage
+    res.response("Thanks for using Supranim!")
