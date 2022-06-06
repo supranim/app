@@ -3,4 +3,5 @@ nimcache/
 nimblecache/
 htmldocs/
 bin/*
+!bin/assets
 storage/*
