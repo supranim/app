@@ -1,0 +1,5 @@
+html
+    meta charset="UTF8"
+    title: "My Supranim"
+    link rel="stylesheet" href="/assets/app.css"
+    body todo="fix this"

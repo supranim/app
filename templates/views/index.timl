@@ -1,0 +1,19 @@
+div.container > div.row.vh-100.align-items-center
+    div.col-12
+        div.row > div.col-12.text-center
+            a href="https://supranim.com" target="_blank"
+                img src="https://supranim.com/supranim.png" width="90px"
+        div.row.mt-3 > div.col-12.solid-box > div.row
+            div.col-6 > div.p-3
+                h2: "📚 Documentation"
+                p
+                    span: "Whether you are new to the framework or have previous experience with Supranim, we recommend reading all the documentation from begining to end.<br>"
+                    a.text-link href="https://docs.supranim.com": "Check documentation"
+            div.col-6 > div.p-3
+                h2: "💛 Open Source"
+                p
+                    span: "Supranim is a free, open-source web framework for web development applications following the model–view–controller architectural pattern.<br>"
+                    a.text-link href="https://supranim.com/donate": "Donate for Open Source Development"
+        div.row
+            div.col-12
+            div.col-12 > p.mt-3.text-center.foot-note: "Made in 🇪🇺 EU by Humans from OpenPeep<br>Open Source Software released under MIT license."
