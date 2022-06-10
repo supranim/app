@@ -12,7 +12,10 @@ after build:
     exec "clear"
 
 task dev, "Development build":
-    exec "nimble build --threads:on --gc:arc"
+    exec "nimble build --threads:on --gc:arc -d:webapp"
+
+task prod, "Production build":
+    exec "nimble build --gc:arc --threads:on -d:release -d:useMalloc --hints:off --opt:speed --spellSuggest -d:webapp"
 
 task up, "Start Application":
     exec "./bin/" & bin[0]
