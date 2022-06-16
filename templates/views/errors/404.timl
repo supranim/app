@@ -1,0 +1,6 @@
+div.container > div.row.vh-100 > div.col-12.d-flex.align-items-center
+    div.container > div.row
+        div.col-12.text-center
+            h1.display-4: "404 | Not found"
+            p.lead.fw-normal.mb-0: "The requested URL was not found on this server"
+            p > a.text-link href="/": "Go back to home page"

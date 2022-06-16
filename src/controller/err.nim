@@ -1,9 +1,7 @@
-from supranim import Response, Request
+import ../app
 
-proc e404*(resp: var Response, req: var Request): Response =
-    ## A simple procedure for handling 404 responses
-    return resp Http404, "404 - Not Found | Sorry, page does not exist"
+proc e404*(): string =
+    result = Tim.render("errors.404")
 
-proc e500*(resp: var Response, req: var Request): Response =
-    ## A simple procedure for handling 500 responses
-    return resp Http500, "500 - Internal Error"
+proc e500*(): string =
+    result = Tim.render("errors.404")

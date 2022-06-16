@@ -7,12 +7,12 @@ div.container > div.row.vh-100.align-items-center
             div.col-6 > div.p-3
                 h2: "📚 Documentation"
                 p
-                    span: "Whether you are new to the framework or have previous experience with Supranim, we recommend reading all the documentation from begining to end.<br>"
+                    span.text-muted: "Whether you are new to the framework or have previous experience with Supranim, we recommend reading all the documentation from begining to end.<br>"
                     a.text-link href="https://docs.supranim.com": "Check documentation"
             div.col-6 > div.p-3
                 h2: "💛 Open Source"
                 p
-                    span: "Supranim is a free, open-source web framework for web development applications following the model–view–controller architectural pattern.<br>"
+                    span.text-muted: "Supranim is a free, open-source web framework for web development applications following the model–view–controller architectural pattern.<br>"
                     a.text-link href="https://supranim.com/donate": "Donate for Open Source Development"
         div.row
             div.col-12

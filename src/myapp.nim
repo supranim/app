@@ -1,10 +1,6 @@
 import supranim
-import emitter
-
 import ./app
-
-# Application Event Listeners
-include ./events/listeners/account
+include ./events/listeners/system
 
 # Initialize application
 App.init()
