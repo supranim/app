@@ -3,5 +3,6 @@ nimcache/
 nimblecache/
 htmldocs/
 bin/*
+!bin/.sample.env.yml
 !bin/assets
 storage/*
