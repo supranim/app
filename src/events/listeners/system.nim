@@ -1,6 +1,18 @@
 from std/strutils import indent, `%`
 import supranim/router
 
+Event.listen("system.http.501") do(callback: varargs[Arg]):
+    discard
+
+Event.listen("system.http.404") do(callback: varargs[Arg]):
+    discard
+
+Event.listen("system.http.middleware.redirect") do(callback: varargs[Arg]):
+    discard
+
+Event.listen("system.http.assets.404") do(callback: varargs[Arg]):
+    discard
+
 Event.listen("system.boot.services") do(services: varargs[Arg]):
     proc refresh() =
         when not defined release:
