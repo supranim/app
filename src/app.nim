@@ -9,7 +9,8 @@ var Tim* = TimEngine.init(
     "./templates",
     "./storage/templates",
     minified = true,
-    indent = 4
+    indent = 4,
+    reloader = HttpReloader
 )
 
 Event.init()
