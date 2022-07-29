@@ -1,13 +1,17 @@
 import ../app
-import supranim/response
+import supranim/controller
 
 proc getHomepage*(req: Request, res: var Response) =
     ## ``GET`` procedure to render the homepage
-    res.response Tim.render("index")
+    res.send Tim.render("index")
 
-proc getAccount*(req: Request, res: var Response) =
+proc getAuth*(req: Request, res: var Response) =
     ## ``GET`` procedure to render the homepage
-    res.response Tim.render("index")
+    res.send readFile("bin/test.html")
+
+proc postAuth*(req: Request, res: var Response) =
+    echo req.getFields()
+    res.redirect("/")
 
 proc getBlank*(req: Request, res: var Response) =
-    res.response ""
+    res.send ""

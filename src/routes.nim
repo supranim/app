@@ -6,7 +6,8 @@ import middleware/auth
 Router.get("/")
 
 # A simple GET route protected by middleware
-Router.get("/account").middleware(authentication)
+Router.get("/auth")
+Router.post("/auth")
 
 Router.get("/blank")
 
