@@ -1,5 +1,5 @@
 import ../app
-import supranim/response
+import supranim/controller
 
 proc getHomepage*(req: Request, res: var Response) =
     ## ``GET`` procedure to render the homepage

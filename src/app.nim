@@ -1,7 +1,5 @@
 import tim, emitter
-import supranim/response
 
-export response
 export tim.precompile, tim.render, tim.getLayouts, tim.getFilePath
 export emitter
 
