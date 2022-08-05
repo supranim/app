@@ -1,4 +1,4 @@
-import ../app
+import supranim/runtime
 
 proc e404*(): string =
     result = Tim.render("errors.404")

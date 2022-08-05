@@ -1,4 +1,4 @@
-import ../app
+import supranim/runtime
 import supranim/controller
 
 proc getHomepage*(req: Request, res: var Response) =

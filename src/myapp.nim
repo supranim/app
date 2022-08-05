@@ -1,8 +1,4 @@
 import supranim
-import ./app
-
-# TODO autoload available event listeners
-include ./events/listeners/system
 
 # Initialize application
 App.init()
