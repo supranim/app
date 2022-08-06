@@ -5,3 +5,4 @@ htmldocs/
 bin/*
 !bin/assets
 storage/*
+/.cache
