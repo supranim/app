@@ -2,7 +2,7 @@ div.container > div.row.vh-100.align-items-center
     div.col-12
         div.row > div.col-12.text-center
             a href="https://supranim.com" target="_blank"
-                img src="https://supranim.com/supranim.png" width="90px"
+                img src="https://supranim.com/logo.png" width="90px"
         div.row.mt-3 > div.col-12.solid-box > div.row
             div.col-6 > div.p-3
                 h2: "📚 Documentation"
