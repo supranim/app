@@ -13,7 +13,6 @@ If you like this project you can contribute to this project by opening new issue
 <strong>Why Nim?</strong> Performance, fast compilation and C-like freedom. We want to keep code clean, readable, concise, and close to our intention. Also a very good language to learn in 2022.
 
 ### 🎩 License
-Supranim is Open Source Software released under `MIT` license. [Developed by Humans from OpenPeep](https://github.com/openpeep).<br>
-Copyright &copy; 2022 OpenPeep & Contributors &mdash; All rights reserved.
+Copyright &copy; 2022 | `MIT` license.
 
-<a href="https://hetzner.cloud/?ref=Hm0mYGM9NxZ4"><img src="https://openpeep.ro/banners/openpeep-footer.png" width="100%"></a>
+<a href="https://hetzner.cloud/?ref=Hm0mYGM9NxZ4"><img src="https://raw.githubusercontent.com/supranim/app/main/.github/hetzner.png" width="100%"></a>

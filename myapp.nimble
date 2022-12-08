@@ -23,7 +23,6 @@ task up, "Start Application":
 # Dependencies
 requires "nim >= 1.4.8"
 requires "supranim >= 0.1.0"
-requires "enimsql"
 requires "limiter"
 requires "emitter"
 requires "tim"
