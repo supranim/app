@@ -14,10 +14,10 @@ Event.listen("system.http.assets.404") do(callback: varargs[Arg]):
     discard
 
 Event.listen("system.boot.services") do(services: varargs[Arg]):
-    proc refresh() =
+    proc reload() =
         when not defined release:
             {.gcsafe.}: Router.refresh()
-    let timTemplates = Tim.precompile do(): refresh()
+    let timTemplates = Tim.precompile do(): reload()
     echo indent("✓ Tim Templates", 2)
     for k, timTemplate in timTemplates.pairs():
         let count = k + 1

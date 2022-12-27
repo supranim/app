@@ -15,5 +15,5 @@ div.container > div.row.vh-100.align-items-center
                     span.text-muted: "Supranim is a free, open-source web framework for web development applications following the model–view–controller architectural pattern.<br>"
                     a.text-link href="https://supranim.com/donate": "Donate for Open Source Development"
         div.row
-            div.col-12
-            div.col-12 > p.mt-3.text-center.foot-note: "Made in 🇪🇺 EU by Humans from OpenPeep<br>Open Source Software released under MIT license."
+            div.col-12 > p.mt-3.text-center.foot-note:
+                $app.year & " " & "Proudly Made in 🇪🇺 Europe"
