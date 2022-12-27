@@ -5,4 +5,5 @@ htmldocs/
 bin/*
 !bin/nginx.conf
 storage/*
+!storage/assets
 /.cache
