@@ -4,6 +4,7 @@ nimblecache/
 htmldocs/
 bin/*
 !bin/nginx.conf
+!bin/.env.yml
 storage/*
 !storage/assets
 /.cache
