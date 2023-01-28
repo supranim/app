@@ -1,0 +1,15 @@
+- tim:
+    type: Singleton
+    params:
+      source: ./templates
+      output: ./storage/templates
+      indent: 2
+      minified: true
+
+- supranim/csrf:
+    type: Singleton
+    ident: Csrf
+
+- emitter:
+    type: Singleton
+    ident: Event
