@@ -10,7 +10,14 @@ proc e404*(): string =
     })
 
 proc e500*(): string =
-    result = Tim.render("errors.404", data = %*{
+    result = Tim.render("errors.500", data = %*{
         "name": "My Supranim",
         "year": $currentYear
     })
+
+proc e503*(): string =
+    result = Tim.render("errors.503", data = %*{
+        "name": "My Supranim",
+        "year": $currentYear
+    })
+
