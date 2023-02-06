@@ -15,6 +15,8 @@ requires "tim"
 requires "limiter"
 requires "emitter"
 requires "watchout"
+requires "zmq"
+requires "kashae"
 
 task dev, "Development build":
   exec "nimble build --threads:on --gc:arc -d:nimPreviewHashRef -d:enableSup -d:webapp"
