@@ -1,0 +1,17 @@
+body {
+  background-color:#07010e;
+  color: #94A3B8;
+  font-size:18px;
+  font-family: "Inter", system-ui;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+.display-1, .display-2,
+.display-3, .h1, .h2, .h3 {
+  background: linear-gradient(119.2deg, rgb(195 194 194 / 40%) 32.07%, rgba(145, 78, 255, 0.4) 75.29%), rgb(234 230 230);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+}

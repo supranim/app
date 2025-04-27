@@ -1,0 +1,15 @@
+div.col-xl-7.col-lg-7.col-md-8.col-11.mx-auto > div.card.p-0.rounded-4.border-0.overflow-hidden > div.row.h-100
+  div.col-lg-7 > div.p-5.my-5
+    h4.h5.d-block.mb-0: "⚡️ Let's get started with"
+    h1.display-3.fw-bold: "Supranim"
+    p: "Thank you for trying Supranim &mdash;
+      A fully featured web framework for Nim development, making web
+      applications and APIs more enjoyable to write."
+    div.mt-2.row.g-3 > div.col-12.d-flex.justify-content-between.align-items-center
+      a.btn.btn-primary.rounded-3.fw-bold href="https://supranim.com" title="Supranim.com Website": "📚 Check Documentation"
+      a.btn.btn-light.px-4.ms-3.rounded-3.fw-bold href="/auth/login" title="Log in to your account": "Log in to Account"
+  div.col-lg-5.bg-cover.position-relative.d-flex.noir
+    style="background-image:url(https://images.unsplash.com/photo-1579169703977-e4575236583c?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)"
+    div.align-self-center.text-center.w-100 > img src="data:image/jpeg;base64, " & $this.logo alt="Supranim" width="100px" height="100px"
+    div.position-absolute.bottom-0.start-0.text-center.w-100.pb-3
+      a.text-light.text-decoration-none target="_blank" href="https://unsplash.com/@lyovon": "@lyovon"
