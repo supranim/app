@@ -5,7 +5,7 @@ import pkg/supranim/model
 #
 newModel Users:
   # This model is used to store the
-  # user data for the application.
+  # users of the application.
   id {.pk.}: Serial
   username {.unique, notnull.}: Varchar(255)
   name: Varchar(255)
@@ -62,4 +62,59 @@ newModel UserSessions:
   session_id {.notnull.}: Varchar(255)
   payload {.notnull.}: JSON
   created_at {.notnull.}: TimestampTz
-  # expires_at {.notnull.}: TimestampTz
+  last_access {.notnull.}: TimestampTz
+
+
+#
+# user_roles
+# https://drawsql.app/templates/laravel-permission
+#
+newModel UserRoles:
+  # This model is used to store the
+  # user roles for the application.
+  id {.pk.}: Serial
+  name {.notnull.}: Varchar(255)
+  guard_name {.notnull.}: Varchar(255)
+  created_at {.notnull.}: TimestampTz
+  updated_at {.nullable.}: TimestampTz
+
+#
+# user_permissions
+#
+newModel Permissions:
+  # This model is used to store the
+  # user permissions for the application.
+  id {.pk.}: Serial
+  name {.notnull.}: Varchar(255)
+  guard_name {.notnull.}: Varchar(255)
+  created_at {.notnull.}: TimestampTz
+  updated_at {.nullable.}: TimestampTz
+
+#
+# role_has_permissions
+#
+newModel RoleHasPermissions:
+  # This model is used to store the
+  # permissions for each role.
+  permission_id {.pk.}: Permissions.id
+  role_id {.pk.}: UserRoles.id
+
+#
+# user_has_permissions
+#
+newModel UserHasPermissions:
+  # This model is used to store the
+  # permissions for each user.
+  permission_id {.pk.}: Permissions.id
+  model_type {.notnull.}: Varchar(255)
+  model_id {.notnull.}: Int
+
+#
+# user_has_roles
+#
+newModel UserHasRoles:
+  # This model is used to store the
+  # roles for each user.
+  role_id {.pk.}: UserRoles.id
+  model_type {.notnull.}: Varchar(255)
+  model_id {.notnull.}: Int

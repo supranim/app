@@ -1,15 +1,38 @@
-div.col-xl-7.col-lg-7.col-md-8.col-11.mx-auto > div.card.p-0.rounded-4.border-0.overflow-hidden > div.row.h-100
-  div.col-lg-7 > div.p-5.my-5
-    h4.h5.d-block.mb-0: "⚡️ Let's get started with"
-    h1.display-3.fw-bold: "Supranim"
-    p: "Thank you for trying Supranim &mdash;
-      A fully featured web framework for Nim development, making web
-      applications and APIs more enjoyable to write."
-    div.mt-2.row.g-3 > div.col-12.d-flex.justify-content-between.align-items-center
-      a.btn.btn-primary.rounded-3.fw-bold href="https://supranim.com" title="Supranim.com Website": "📚 Check Documentation"
-      a.btn.btn-light.px-4.ms-3.rounded-3.fw-bold href="/auth/login" title="Log in to your account": "Log in to Account"
-  div.col-lg-5.bg-cover.position-relative.d-flex.noir
-    style="background-image:url(https://images.unsplash.com/photo-1579169703977-e4575236583c?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)"
-    div.align-self-center.text-center.w-100 > img src="data:image/jpeg;base64, " & $this.logo alt="Supranim" width="100px" height="100px"
-    div.position-absolute.bottom-0.start-0.text-center.w-100.pb-3
-      a.text-light.text-decoration-none target="_blank" href="https://unsplash.com/@lyovon": "@lyovon"
+div.col-xl-8.col-md-8.col-11.mx-auto
+  div.card.p-0.rounded-4.overflow-hidden > div.row.h-100
+    div.rounded-text.rotating.position-absolute.start-0.ms-3.mt-5
+      svg width="100%" height="100%" viewBox="0 0 200 200"
+        path id="textPath" d="M 85,0 A 85,85 0 0 1 -85,0 A 85,85 0 0 1 85,0" transform="translate(100,100)" fill="none" stroke-width="0"
+        g font-size="16px"
+          text text-anchor="start"
+            textPath xlink:href="#textPath" fill="#fff" startOffset="0%": "Badass Web Framework"
+    div.col-lg-7 > div.p-5.my-5 > div.px-5.pt-5
+      h4.display-5.fw-bold: "The Supranim Starter Kit"
+        small.p-1.badge.bg-primary.align-text-top style="font-size:.7rem": "v0.1.0"
+      p.lead
+        strong: "Thanks for trying Supranim"
+        " &mdash; This is the official starter kit to help you kickstart your next awesome project with Supranim."
+      var features = ["Supranim v0.1.0", "Tim Engine + Bootstrap 5", "Authentication", "Flash Messages", "and more..."]
+      p.lead.d-none
+        for $feature in $features:
+          span.badge.bg-dark.rounded-3.px-2.py-1.fw-bold.me-1: $feature
+
+      div.mt-2.row.g-3 > div.col-12.d-flex.justify-content-center.align-items-center
+        a.btn.btn-outline-light.border-2.px-4.me-3.rounded-3.fw-bold href="https://github.com/supranim" title="Give us a star on GitHub": "Star us on GitHub"
+        a.btn.btn-primary.rounded-3.fw-bold.px-4 href="https://supranim.com" title="Supranim.com Website": "📚 Documentation"
+    
+    div.col-lg-5.bg-cover style="background-image:url(" & $app["homepage_cover"] & ");"
+      div.d-flex.flex-column.h-100
+        div.d-flex.justify-content-end.align-items-start
+          div.dropdown.mt-3.me-3.dropdown-menu-end
+            button.btn.dropdown-toggle.border-0 type="button" data-bs-toggle="dropdown" aria-expanded="false"
+              img.rounded-pill.border.border-2 src="/assets/profile.png" alt="Supranim" width="48px" height="48px"
+              span.ms-2.fw-medium: "My account"
+            ul.dropdown-menu.rounded-4.shadow-lg style="font-size: .9rem"
+              li > a.dropdown-item href="/account/edit?tab=personal": "Edit profile"
+              li > a.dropdown-item href="/account/edit?tab=security": "Security"
+              li.dropdown-divider
+              li.nav-item > a.dropdown-item href="/auth/logout": "Log out"
+        div.d-flex.justify-content-center.align-items-center.h-100 > img src="/assets/supranim.png" alt="Supranim" width="100px" height="100px"
+        div.d-flex.justify-content-center.align-items-start.mb-3.position-relative style="z-index:1"
+          a.text-light.text-decoration-none target="_blank" href="https://unsplash.com/@lyovon": "@lyovon"

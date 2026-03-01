@@ -1,11 +1,9 @@
-const cover = "https://images.unsplash.com/photo-1671624524528-5822d43e9100?q=80&w=1892&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-
-div.col-xl-7.col-lg-7.col-md-8.col-11.mx-auto > div.card.p-0.rounded-4.border-0.overflow-hidden > div.row.h-100
-  div.col-lg-7 > div.p-5.my-4
-    h4.h6.d-block.mb-2 > a.text-decoration-none.text-light href="/": "&#8592; Back to homepage"
+div.col-xl-8.col-md-8.col-11.mx-auto > div.card.p-0.rounded-4.overflow-hidden > div.row.h-100
+  div.col-lg-7 > div.p-5.my-5 > div.p-5
+    h4.h6.d-block.mb-2 > a.text-decoration-none.text-light href="/auth/login": "&#8592; Back to login"
     h1.display-6.fw-bold.mb-3: "Create an account"
     
-    for $msg in $this.notifications:
+    for $msg in $this["notifications"]:
       div.alert.alert-info.border-0 > p.mb-0: $msg
     
     form method="POST" action="/auth/register"
@@ -22,11 +20,15 @@ div.col-xl-7.col-lg-7.col-md-8.col-11.mx-auto > div.card.p-0.rounded-4.border-0.
         label: "Confirm password"
 
       div.row > div.col-12.d-flex.justify-content-between.align-items-center
-        a.text-light href="/auth/login": "Do you have an account?"
+        div.form-check
+          label.form-check-label
+            input.form-check-input name="terms" type="checkbox" id="terms"
+            small: "I agree to the terms and conditions"
         button.btn.btn-primary.border-2.rounded-3.px-4.fw-bold: "Register"
 
   // inserts a cool cover image
-  div.col-lg-5.bg-cover.position-relative.d-flex.noir style="background-image:url(" & $cover & ")"
-    div.align-self-center.text-center.w-100 > img src="data:image/jpeg;base64, " & $this.logo alt="Supranim" width="100px" height="100px"
+  div.col-lg-5.bg-cover.position-relative.d-flex.noir style="background-image:url(" & $app["login_cover"] & ")"
+    div.align-self-center.text-center.w-100 > a.position-relative href="/"
+      img src="/assets/supranim.png" alt="Supranim" width="100px" height="100px"
     div.position-absolute.bottom-0.start-0.text-center.w-100.pb-3
-      a.text-light.text-decoration-none target="_blank" href="https://unsplash.com/@william_44": "@william_44"
+      a.text-light.text-decoration-none target="_blank" href="https://unsplash.com/@maplerockdesign": "@maplerockdesign"

@@ -1,6 +1,18 @@
+html[data-bs-theme='dark']:root {
+  --bg-color: #101010;
+  --bs-body-bg: #191919;
+  --fg-color: whitesmoke;
+}
+
+html[data-bs-theme='light']:root {
+  --bs-body-bg: #fff;
+  --bg-color: #fff;
+  --fg-color: #282828;
+}
+
 body {
-  background-color:#07010e;
-  color: #94A3B8;
+  background-color:var(--bg-color);
+  color: var(--fg-color);
   font-size:18px;
   font-family: "Inter", system-ui;
   font-optical-sizing: auto;
@@ -8,10 +20,65 @@ body {
   font-style: normal;
 }
 
-.display-1, .display-2,
-.display-3, .h1, .h2, .h3 {
-  background: linear-gradient(119.2deg, rgb(195 194 194 / 40%) 32.07%, rgba(145, 78, 255, 0.4) 75.29%), rgb(234 230 230);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-fill-color: transparent;
+.btn-primary {
+  --bs-btn-bg: #3225b7;
+  --bs-btn-border-color:#3225b7;
+}
+
+.bg-cover {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position:center bottom;
+  position: relative;
+}
+
+.bg-cover:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 220px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.7));
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+.rotating svg {
+  animation: rotating 10s linear infinite;
+}
+
+.rounded-text {
+  width: 150px;
+  height: 150px;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 15px;
+  background-image:url(/assets/supranim.png);
+  background-size: 64px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  mix-blend-mode: exclusion;
+  filter: saturate(0);
+  top:-15px;
+  pointer-events: none;
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotateZ(0deg);
+    -moz-transform: rotateZ(0deg);
+    -webkit-transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(180deg);
+    -moz-transform: rotateZ(180deg);
+    -webkit-transform: rotateZ(180deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+    -moz-transform: rotateZ(0deg);
+    -webkit-transform: rotateZ(0deg);
+  }
 }

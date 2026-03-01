@@ -1,0 +1,67 @@
+html data-bs-theme="dark"
+  head
+    meta charset="utf-8"
+    title: "Supranim &mdash; Getting Started"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    link rel="icon" href="/assets/favicon-32x32.png" type="image/x-icon"
+    link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    link rel="preconnect" href="https://fonts.googleapis.com"
+    link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""
+    link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"
+    link rel="stylesheet" href="/assets/app.css"
+    style: """
+    body:before {
+      content: "";
+      display: block;
+      background-image: url("/assets/image.png");
+      background-repeat: repeat;
+      background-size: 257px auto;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      pointer-events: none;
+      z-index: 99999;
+      opacity: .35;
+    }
+    """
+  body
+    div.container-fluid > div.row.vh-100.align-items-center > div.col-12
+      div.row
+        // The `@view` macro is a special macro that injects
+        // the content of the specific view into this layout.
+        @view
+      footer.row > div.col-12.text-center > small.text-muted
+        p.mt-4.mb-0: "Made by Humans from OpenPeeps"
+        p.mb-0: $app["date"]["year"] & " &copy; OpenPeeps & Contributors | MIT License"
+    
+    script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"
+    script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"
+
+    // Connects to the Watchout server to listen
+    // for file changes and reloads the page when a change is detected.
+    script: """
+    {
+      function connectWatchoutServer() {      
+        const watchout = new WebSocket('ws://127.0.0.1:9000');
+        watchout.addEventListener('message', (e) => {
+          if(e.data == '1') location.reload()
+        });
+
+        setInterval(() => {
+          if(watchout.readyState == WebSocket.OPEN) {
+            watchout.send('ping')
+          }
+        }, 300)
+
+        watchout.addEventListener('close', () => {
+          setTimeout(() => {
+            console.log('Watchout WebSocket is closed. Try again...')
+            connectWatchoutServer()
+          }, 300)
+        })
+      }
+      connectWatchoutServer()
+    }
+    """

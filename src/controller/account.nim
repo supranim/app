@@ -3,7 +3,7 @@ import std/[os, times, json, options]
 import pkg/[bag, enimsql]
 import pkg/supranim/[core/paths, controller]
 
-import ../service/singleton/[db, session, tim]
+import ../service/provider/[db, session, tim]
 
 ctrl getAccount:
   ## Renders the account page

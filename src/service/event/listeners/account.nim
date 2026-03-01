@@ -29,7 +29,7 @@ listener "account.password.request":
       # requested a password reset link and if it's not expired
       let anyPassRequests =
         Models.table("user_account_password_resets")
-              .select.where("user_id", userId).get()
+              .select.where("user_id", userId).getAll()
       if anyPassRequests.isEmpty() == false:
         var hasAnyValidRequests: bool
         for anyPassReq in anyPassRequests:
@@ -48,7 +48,6 @@ listener "account.password.request":
             Models.table("user_account_password_resets")
                   .remove.where("token", anyPassReq.get("token").value)
                   .exec()
-
         if hasAnyValidRequests:
           return # the already generated password reset link is still valid
 
