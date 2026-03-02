@@ -1,10 +1,6 @@
 .DS_Store
+build/
 nimcache/
 nimblecache/
 htmldocs/
-bin/*
-!bin/nginx.conf
-!bin/.env.yml
-storage/*
-!storage/assets
-/.cache
+/src/storage/templates/*
