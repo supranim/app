@@ -7,6 +7,30 @@
   <code>supra new &lt;project&gt;</code>
 </p>
 
+## Starter Kit Features
+- [x] [Tim template engine](https://github.com/openpeeps/tim) for server-side rendering
+- [x] Authentication system with email and password
+- [x] User registration and login pages with form validation
+- [x] Forgot password flow with email verification
+- [x] Session management & Flash messages
+- [ ] User management dashboard
+- [x] Made for cool kids by Humans from OpenPeeps!
+
+## Getting Started
+If this is the first time you're using Nim, check out the [Nim installation guide](https://nim-lang.org/install.html) to set up Nim on your machine. Once you have Nim installed, you can install [Supra](github.com/supranim/supra), the Supranim CLI tool, using Nim's package manager, Nimble:
+
+```bash
+nimble install supra
+```
+
+### Create a new project using Supra
+Start your new awesome web project with this Starter Kit by running the following command in your terminal:
+```
+supra init awesome-project
+cd awesome-project && nimble build
+cd ./build && ./awesome_project start .
+```
+
 ### ❤ Contributions & Support
 - 🐛 Found a bug? [Create a new Issue](https://github.com/supranim/supranim/issues)
 - 👋 Wanna help? [Fork it!](https://github.com/supranim/supranim/fork)
