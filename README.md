@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  <code>supra new <project></code>
+  <code>supra new &lt;project&gt;</code>
 </p>
 
 ### ❤ Contributions & Support
