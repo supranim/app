@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://github.com/supranim/starter/blob/main/.github/groovebox_logo.png" width="90px"><br>
-  A starter template for building web applications with<br>the [Supranim](https://github.com/supranim/supranim) web framework.<br>
+  A starter template for building web applications with<br>the <a href="https://github.com/supranim/supranim">Supranim</a> web framework.<br>
 </p>
 
 <p align="center">
