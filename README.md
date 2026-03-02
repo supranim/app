@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/supranim/starter/blob/main/.github/starter-screenshot.png" width="577" height="325"><br><br>
+  <img src="https://github.com/supranim/app/blob/main/.github/starter-screenshot.png" width="577" height="325"><br><br>
   A starter template for building web applications with<br>the <a href="https://github.com/supranim/supranim">Supranim web framework</a><br>
 </p>
 
