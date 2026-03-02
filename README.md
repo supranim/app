@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://github.com/supranim/starter/blob/main/.github/starter-screenshot.png" width="577" height="325"><br><br>
-  A starter template for building web applications with<br>the [Supranim](https://github.com/supranim/supranim) web framework.<br>
+  A starter template for building web applications with<br>the <a href="https://github.com/supranim/supranim">Supranim web framework</a><br>
 </p>
 
 <p align="center">
