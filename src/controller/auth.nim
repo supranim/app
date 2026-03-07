@@ -10,11 +10,11 @@ import ../service/provider/[db, session, tim, events]
 
 ctrl getAuthLogin:
   ## GET handler renders authentication page
-  login.getLogin(getAccount)
+  login.getLogin(getHomepage)
 
 ctrl postAuthLogin:
   ## POST handle authentication requests
-  login.postLogin(getAccount)
+  login.postLogin(getHomepage)
 
 ctrl getAuthForgotPassword:
   ## GET handler renders the forgot password page
