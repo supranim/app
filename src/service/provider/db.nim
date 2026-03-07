@@ -1,5 +1,5 @@
 import std/[strutils, tables, times, macros, os]
-import pkg/[enimsql, jsony, kapsis/cli]
+import pkg/[ozark, jsony, kapsis/cli]
 
 import pkg/supranim/core/servicemanager
 import pkg/supranim/core/[paths, config]
@@ -21,32 +21,31 @@ initService DB[Global]:
   client do:
     proc init*() =
       loadEnvStatic()
-      enimsql.initdb(
+      ozark.initOzarkDatabase(
+        address = getEnv("database.address"),
         name = getEnv("database.name"),
         user = getEnv("database.user"),
         password = getEnv("database.password")
       )
+      initOzarkPool(10)
       try:
-        withDB do:
+        withDBPool do:
           # create database tables if not exists
-          initTable(Users)
-          initTable(UserSessions)
-          initTable(UserAccountConfirmations)
-          initTable(UserAccountEmailConfirmations)
-          initTable(UserAccountPasswordResets)
+          Models.table(Users).prepareTable().exec()
+          Models.table(UserSessions).prepareTable().exec()
+          Models.table(UserAccountConfirmations).prepareTable().exec()
+          Models.table(UserAccountEmailConfirmations).prepareTable().exec()
+          Models.table(UserAccountPasswordResets).prepareTable().exec()
 
-          # the following code is used to
-          # create a test user account.
+          # the following code is used to create a test user account.
           # this code should be removed in production
-          # and should be moved to a seeder
-          # or a migration file.
-          let userRes =
-            Models.table("users")
-                  .select.where("id", "1").getAll()
+          # and should be moved to a seeder or a migration file.
+          let userRes = Models.table(Users)
+                              .selectAll().where("id", "1").getAll()
 
           if userRes.isEmpty:
             let (pk, sk) = auth.boxKeys()
-            let userId = Models.table("users").insert({
+            let userId = Models.table(Users).insert({
               "name": "Johnny Dope",
               "username": nanoid.generate(size = 32),
               "email": "test@example.com",
@@ -61,13 +60,12 @@ initService DB[Global]:
             display(span("Password:"), green("strong password here"), span("\n"))
 
             let confirmationLink = auth.boxEncrypt("test@example.com", pk, sk)
-            Models.table("user_account_confirmations").insert({
+            Models.table(UserAccountConfirmations).insert({
               "user_id": $userId,
               "token": confirmationLink,
               "created_at": $(now()),
               "expires_at": $(now() + 10.minutes)
             }).exec()
-            
             displayInfo("Confirmation link:")
             display($link("/account/verify", {"token": confirmationLink}))
       except DbError:

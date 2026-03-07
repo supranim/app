@@ -27,7 +27,7 @@ html data-bs-theme="dark"
     }
     """
   body
-    div.container-fluid > div.row.vh-100.align-items-center > div.col-12
+    div.container-fluid style="min-width: 320px" > div.row.vh-100.align-items-center > div.col-12
       div.row
         // The `@view` macro is a special macro that injects
         // the content of the specific view into this layout.
@@ -41,27 +41,28 @@ html data-bs-theme="dark"
 
     // Connects to the Watchout server to listen
     // for file changes and reloads the page when a change is detected.
-    script: """
-    {
-      function connectWatchoutServer() {      
-        const watchout = new WebSocket('ws://127.0.0.1:9000');
-        watchout.addEventListener('message', (e) => {
-          if(e.data == '1') location.reload()
-        });
+    if $app["system"]["isDevelopment"] == true:
+      script: """
+      {
+        function connectWatchoutServer() {      
+          const watchout = new WebSocket('ws://127.0.0.1:9000');
+          watchout.addEventListener('message', (e) => {
+            if(e.data == '1') location.reload()
+          });
 
-        setInterval(() => {
-          if(watchout.readyState == WebSocket.OPEN) {
-            watchout.send('ping')
-          }
-        }, 300)
-
-        watchout.addEventListener('close', () => {
-          setTimeout(() => {
-            console.log('Watchout WebSocket is closed. Try again...')
-            connectWatchoutServer()
+          setInterval(() => {
+            if(watchout.readyState == WebSocket.OPEN) {
+              watchout.send('ping')
+            }
           }, 300)
-        })
+
+          watchout.addEventListener('close', () => {
+            setTimeout(() => {
+              console.log('Watchout WebSocket is closed. Try again...')
+              connectWatchoutServer()
+            }, 300)
+          })
+        }
+        connectWatchoutServer()
       }
-      connectWatchoutServer()
-    }
-    """
+      """

@@ -26,9 +26,8 @@ div.col-xl-8.col-md-8.col-11.mx-auto > div.card.p-0.rounded-4.overflow-hidden > 
             small: "I agree to the terms and conditions"
         button.btn.btn-primary.border-2.rounded-3.px-4.fw-bold: "Register"
 
-  // inserts a cool cover image
-  div.col-lg-5.bg-cover.position-relative.d-flex.noir style="background-image:url(" & $app["login_cover"] & ")"
-    div.align-self-center.text-center.w-100 > a.position-relative href="/"
-      img src="/assets/supranim.png" alt="Supranim" width="100px" height="100px"
-    div.position-absolute.bottom-0.start-0.text-center.w-100.pb-3
-      a.text-light.text-decoration-none target="_blank" href="https://unsplash.com/@maplerockdesign": "@maplerockdesign"
+  div.col-lg-5.bg-cover.position-relative style="background-image:url(" & $app["login_cover"] & ")"
+    div.d-flex.flex-column.h-100
+      div.d-flex.justify-content-center.align-items-center.h-100 > img src="/assets/supranim.png" alt="Supranim" width="100px" height="100px"
+      div.d-flex.justify-content-center.align-items-start.mb-3.position-relative style="z-index:1"
+        a.small.text-light.text-decoration-none target="_blank" href="https://unsplash.com/@maplerockdesign": "@maplerockdesign"

@@ -40,6 +40,12 @@ App.services do:
     App.config("tim.output").getStr,
     supranim.basePath,
     global = %*{
+      "system": {
+        "isDevelopment": (
+          when not defined(release): true
+          else: false
+        )
+      },
       "date": {
         "year": now().year
       },

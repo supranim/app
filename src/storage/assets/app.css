@@ -20,6 +20,10 @@ body {
   font-style: normal;
 }
 
+.btn:active {
+  scale: .93;
+}
+
 .btn-primary {
   --bs-btn-bg: #3225b7;
   --bs-btn-border-color:#3225b7;

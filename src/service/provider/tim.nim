@@ -24,23 +24,27 @@ initService Tim[Global]:
       )
 
       # predefine foreign functions
-      timInstance.userScript.addProc("slugify", @[paramDef("s", tyString)], tyString,
+      timInstance.userScript.addProc("slugify", @[paramDef("s", ttyString)], ttyString,
         proc (args: StackView): Value =
           ## Convert a string to a URL-friendly slug
           return initValue(slugify(args[0].stringVal[]))
         )
 
-      timInstance.userScript.addProc("dashboard", @[paramDef("x", tyString)], tyString,
+      timInstance.userScript.addProc("dashboard", @[paramDef("x", ttyString)], ttyString,
         proc (args: StackView): Value =
           # prefix a link with `/dashboard/`
           return initValue("/dashboard/" & args[0].stringVal[])
         )
-
+      
+      # Initialize common storage with request-specific data
+      # this allows templates to access these values via `$this` without needing
+      # to pass them explicitly every time, such as the current URL, year,
+      # and authentication status
       tim.initCommonStorage:
         {
           "path": req.getUrl(),
           "currentYear": now().format("yyyy"),
-          "isAuth": true, # req.isAuthenticated(res)
+          "isAuth": req.isAuthenticated(res)
         }
 
       timInstance.precompile()
@@ -59,9 +63,11 @@ initService Tim[Global]:
       try:
         let output = render(timInstance, view, layout, local)
         respond(httpCode, output)
-      except TimEngineError as e:
-        displayError("<services.tim> " & e.msg)
-        respond(Http500, render(timInstance, "errors.5xx", layout, local))
-      except Exception as e:
-        displayError("<services.tim> " & e.msg)
-        respond(Http500, render(timInstance, "errors.5xx", layout, local))
+      except:
+        let errMsg = getCurrentExceptionMsg()
+        displayError("<runtime.exception> " & errMsg)
+        try:
+          let errorLocal = %*{"error": errMsg}
+          respond(Http500, render(timInstance, "errors.5xx", layout, errorLocal))
+        except:
+          respond(Http500, "Internal Server Error: " & errMsg)

@@ -9,30 +9,28 @@ routes:
 
   get "/account" {.middleware: [authenticate].}
     # GET route links to `getAccount` controller
-
+    
   get "/account/verify"
     # GET route links to `getAccountVerify` controller
 
-  get "/auth/login"
-    # GET route links to `getAuthLogin` controller
+  # Group routes under the `/auth` path for
+  # authentication-related pages and actions
+  group "/auth":
+    (get, post) -> "/login"
+      # GET and POST routes link to `getAuthLogin` and `postAuthLogin`
+      # controllers respectively
+    
+    (get, post) -> "/forgot-password"
+      # GET and POST routes link to `getAuthForgotPassword` and
+      # `postAuthForgotPassword` controllers respectively
+    
+    (get, post) -> "/reset-password"
+      # GET and POST routes link to `getAuthResetPassword` and
+      # `postAuthResetPassword` controllers respectively
+    
+    (get, post) -> "/register"
+      # GET and POST routes link to `getAuthRegister` and
+      # `postAuthRegister` controllers respectively
 
-  post "/auth/login"
-    # POST route links to `postAuthLogin` controller
-
-  get[post] "/auth/register"
-    # GET & POST route links to `getRegister` & `postRegister` controllers
-
-  get "/auth/forgot-password"
-    # GET route links to `getForgotPassword` controller
-  
-  post "/auth/forgot-password"
-    # POST route links to `postForgotPassword` controller
-  
-  get "/auth/reset-password"
-    # GET route links to `getResetPassword` controller
-
-  post "/auth/reset-password"
-    # POST route links to `postResetPassword` controller
-
-  get "/auth/logout"
-    # GET route links to `getLogout` controller
+    get "/logout"
+      # GET route links to `getAuthLogout` controller

@@ -1,4 +1,4 @@
-div.col-xl-8.col-md-8.col-11.mx-auto
+div.col-xl-8.col-lg-9.col-md-8.col-12.mx-auto
   div.card.p-0.rounded-4.overflow-hidden > div.row.h-100
     div.rounded-text.rotating.position-absolute.start-0.ms-3.mt-5
       svg width="100%" height="100%" viewBox="0 0 200 200"
@@ -6,33 +6,39 @@ div.col-xl-8.col-md-8.col-11.mx-auto
         g font-size="16px"
           text text-anchor="start"
             textPath xlink:href="#textPath" fill="#fff" startOffset="0%": "Badass Web Framework"
-    div.col-lg-7 > div.p-5.my-5 > div.px-5.pt-5
+    div.col-lg-7 > div.p-xl-5.p-lg-0.my-5 > div.ps-5.pe-0.pt-5
       h4.display-5.fw-bold: "The Supranim Starter Kit"
         small.p-1.badge.bg-primary.align-text-top style="font-size:.7rem": "v0.1.0"
       p.lead
         strong: "Thanks for trying Supranim"
         " &mdash; This is the official starter kit to help you kickstart your next awesome project with Supranim."
-      var features = ["Supranim v0.1.0", "Tim Engine + Bootstrap 5", "Authentication", "Flash Messages", "and more..."]
-      p.lead.d-none
-        for $feature in $features:
-          span.badge.bg-dark.rounded-3.px-2.py-1.fw-bold.me-1: $feature
-
-      div.mt-2.row.g-3 > div.col-12.d-flex.justify-content-center.align-items-center
-        a.btn.btn-outline-light.border-2.px-4.me-3.rounded-3.fw-bold href="https://github.com/supranim" title="Give us a star on GitHub": "Star us on GitHub"
+      div.mt-2.row.g-3 > div.col-12.d-flex.flex-column.flex-md-row.justify-content-start.align-items-center
+        a.btn.btn-outline-light.border-2.px-4.me-3.mb-2.mb-md-0.rounded-3.fw-bold href="https://github.com/supranim" title="Give us a star on GitHub": "Check GitHub"
         a.btn.btn-primary.rounded-3.fw-bold.px-4 href="https://supranim.com" title="Supranim.com Website": "📚 Documentation"
-    
+
     div.col-lg-5.bg-cover style="background-image:url(" & $app["homepage_cover"] & ");"
       div.d-flex.flex-column.h-100
         div.d-flex.justify-content-end.align-items-start
-          div.dropdown.mt-3.me-3.dropdown-menu-end
-            button.btn.dropdown-toggle.border-0 type="button" data-bs-toggle="dropdown" aria-expanded="false"
-              img.rounded-pill.border.border-2 src="/assets/profile.png" alt="Supranim" width="48px" height="48px"
-              span.ms-2.fw-medium: "My account"
-            ul.dropdown-menu.rounded-4.shadow-lg style="font-size: .9rem"
-              li > a.dropdown-item href="/account/edit?tab=personal": "Edit profile"
-              li > a.dropdown-item href="/account/edit?tab=security": "Security"
-              li.dropdown-divider
-              li.nav-item > a.dropdown-item href="/auth/logout": "Log out"
+          div.mt-3.me-3
+            if $this["isAuth"] == true:
+              div.dropdown.dropdown-menu-end
+                button.btn.dropdown-toggle.border-0 type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                  img.rounded-pill.border.border-2 src="/assets/profile.png" alt="Supranim" width="48px" height="48px"
+                  span.ms-2.fw-medium: "My account"
+                ul.dropdown-menu.rounded-4.shadow-lg style="font-size: .9rem"
+                  li > a.dropdown-item href="/account/edit?tab=personal": "Edit profile"
+                  li > a.dropdown-item href="/account/edit?tab=security": "Security"
+                  li.dropdown-divider
+                  li.nav-item > a.dropdown-item href="/auth/logout": "Log out"
+            else:
+              a.btn.rounded-3.px-4.border-2.fw-bold href="/auth/login"
+                svg.me-1 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle"
+                  path stroke="none" d="M0 0h24v24H0z" fill="none"
+                  path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"
+                  path d="M9 10a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"
+                  path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"
+                span: "Authentication"
+
         div.d-flex.justify-content-center.align-items-center.h-100 > img src="/assets/supranim.png" alt="Supranim" width="100px" height="100px"
         div.d-flex.justify-content-center.align-items-start.mb-3.position-relative style="z-index:1"
           a.text-light.text-decoration-none target="_blank" href="https://unsplash.com/@lyovon": "@lyovon"

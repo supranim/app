@@ -19,7 +19,7 @@ listener "account.password.request":
         Models.table("users")
               .select("id", "pk", "sk")
               .where("email", args.get()[0])
-              .get()
+              .getAll()
       if unlikely(dbres.isEmpty):
         return # no user found with the given email address. abort listener
       let
@@ -81,7 +81,7 @@ listener "account.register":
     withDB do:
       let fields = args.get()
       let anyUser = Models.table("users")
-                          .select("id").where("email", fields[0]).get()
+                          .select("id").where("email", fields[0]).getAll()
       # check if the user already exists
       # if so, abort the registration process
       if anyUser.isEmpty() == false: return
