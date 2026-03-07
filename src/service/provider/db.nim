@@ -5,6 +5,8 @@ import pkg/supranim/core/servicemanager
 import pkg/supranim/core/[paths, config]
 import pkg/supranim/support/[nanoid, auth, url]
 
+import ./events
+
 initService DB[Global]:
   backend do:
     macro loadModels =
@@ -36,37 +38,13 @@ initService DB[Global]:
           Models.table(UserAccountConfirmations).prepareTable().exec()
           Models.table(UserAccountEmailConfirmations).prepareTable().exec()
           Models.table(UserAccountPasswordResets).prepareTable().exec()
-
-          # the following code is used to create a test user account.
-          # this code should be removed in production
-          # and should be moved to a seeder or a migration file.
-          let userRes = Models.table(Users)
-                              .selectAll().where("id", "1").getAll()
-
-          if userRes.isEmpty:
-            let (pk, sk) = auth.boxKeys()
-            let userId = Models.table(Users).insert({
-              "name": "Johnny Dope",
-              "username": nanoid.generate(size = 32),
-              "email": "test@example.com",
-              "pk": pk,
-              "sk": sk,
-              "password": auth.hashPassword("strong password here"),
-              "created_at": $(now())
-            }).execGet()
-            
-            displaySuccess("Created test account:")
-            display(span("E-mail:"), green("test@example.com"))
-            display(span("Password:"), green("strong password here"), span("\n"))
-
-            let confirmationLink = auth.boxEncrypt("test@example.com", pk, sk)
-            Models.table(UserAccountConfirmations).insert({
-              "user_id": $userId,
-              "token": confirmationLink,
-              "created_at": $(now()),
-              "expires_at": $(now() + 10.minutes)
-            }).exec()
-            displayInfo("Confirmation link:")
-            display($link("/account/verify", {"token": confirmationLink}))
+          when not defined release:
+            # the following code is used to create a test user account.
+            # this code should be removed in production
+            # and should be moved to a seeder or a migration file.
+            let userRes = Models.table(Users)
+                                .selectAll().where("id", "1").getAll()
+            if userRes.isEmpty:
+              events.emitter("account.register", some(@["test@example.com", "strong password here"]))
       except DbError:
         displayError("Database connection failed. Please check your database settings.")

@@ -14,33 +14,33 @@ ctrl getAccount:
 ctrl getAccountVerify:
   ## GET handle that verifies the user account
   ## by checking the token in the URL
-  let q = req.getQueryTable()
   withSession do:
+    let q {.inject.} = req.getQueryTable()
     if likely(q.hasKey"token"):
       withDBPool do:
-        let dbres =
+        let dbres {.inject.} =
             Models.table(UserAccountConfirmations)
                   .selectAll().where("token", q["token"]).getAll()
         # check if confirmation token is still valid (not expired)
         if not dbres.isEmpty():
-          let confirmation = dbres.first()
+          let confirmation {.inject.} = dbres.first()
           let expValue = confirmation.getExpiresAt()
-          # echo expValue
           let expiresAt: DateTime = times.parse(expValue, "yyyy-MM-dd HH:mm:sszz")
-          
           if expiresAt <= now():
             userSession.notify("The confirmation token has expired.", some("/auth/login"))
             go getAccount # redirects to `/account`
 
           # update the user account to set the is_confirmed field to true
-          let user_id = confirmation.getUserId()
           Models.table(Users).update({
                   "is_confirmed": "true"
-                }).where("id", user_id).exec()
+                }).where("id",
+                  confirmation.getUserId()
+                ).exec()
+          
           # delete the confirmation token from the database
-          # assert Models.table(UserAccountConfirmations)
-          #              .remove.where("token", q["token"]).execGet() == 1
-          Models.rawSQL("DELETE FROM user_account_confirmations WHERE token = $1", q["token"]).exec()
+          Models.table(UserAccountConfirmations)
+                .removeRow()
+                .where("token", confirmation.getToken).exec()
 
           # once updated we can notify the user and redirect to the login page.
           userSession.notify("Your account has been verified. You can now login.", some("/auth/login"))
