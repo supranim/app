@@ -3,7 +3,7 @@ import std/[os, times, sugar, json, sequtils]
 import pkg/[bag, jsony, ozark, kapsis/cli]
 
 import pkg/supranim/[core/paths, controller]
-import pkg/supranim/support/auth
+import pkg/supranim/support/[auth, nanoid]
 import pkg/supranim_session/controller/[login, register, forgot]
 
 import ../service/provider/[db, session, tim, events]

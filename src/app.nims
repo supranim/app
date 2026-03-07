@@ -19,3 +19,11 @@ when not defined release:
 else:
   --passC:"-O3 -flto" # Optimize for speed
   --passL:"-flto"     # Link Time Optimization for smaller/faster binaries
+
+  # Embed assets in production for better performance and easier deployment
+  const embedAssetsPath {.strdefine.} = ""
+  when defined supraEmbedAssets:
+    let outputEmbedAssets = getProjectPath().parentDir() / ".cache" / "embed_assets.nim"
+    let assetsPath = absolutePath(joinPath(getProjectPath() / "storage", "assets"))
+    if dirExists(assetsPath):
+      exec "supra bundle.assets \"" & assetsPath & "\" \"" & outputEmbedAssets & "\""
