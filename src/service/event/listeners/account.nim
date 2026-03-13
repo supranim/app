@@ -1,6 +1,8 @@
-import std/[options, tables, times, strformat]
+import std/[options, tables, times, strformat, json, os]
 
-import pkg/[ozark, kapsis/cli]
+import pkg/ozark
+import pkg/kapsis/interactive/prompts
+
 import pkg/supranim/service/events
 import pkg/supranim/support/[auth, url, nanoid]
 
@@ -79,6 +81,14 @@ listener "account.password.request":
 
 listener "account.register":
   ## Event listener for registering a new user account.
+  ## 
+  ## Registering a new user account involves creating a new user record in the database
+  ## and sending a confirmation email to the user with a link to verify their email address
+  ## 
+  ## The verification step is important to ensure that the email address provided
+  ## by the user is valid and belongs to them. If you want you can disable
+  ## the verification step (TODO)
+  ## 
   assert args.isSome()
   {.gcsafe.}:
     withDBPool do:

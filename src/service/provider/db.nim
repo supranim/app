@@ -1,7 +1,8 @@
 import std/[strutils, tables, times, macros, os]
-import pkg/[ozark, jsony, kapsis/cli]
+import pkg/[ozark, jsony]
+import pkg/kapsis/interactive/prompts
 
-import pkg/supranim/core/servicemanager
+import pkg/supranim/core/services
 import pkg/supranim/core/[paths, config]
 import pkg/supranim/support/[nanoid, auth, url]
 
@@ -45,6 +46,6 @@ initService DB[Global]:
             let userRes = Models.table(Users)
                                 .selectAll().where("id", "1").getAll()
             if userRes.isEmpty:
-              events.emitter("account.register", some(@["test@example.com", "strong password here"]))
+              event().emit("account.register", some(@["test@example.com", "strong password here"]))
       except DbError:
         displayError("Database connection failed. Please check your database settings.")

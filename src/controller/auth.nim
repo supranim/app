@@ -1,6 +1,7 @@
 import std/[os, times, sugar, json, sequtils]
 
-import pkg/[bag, jsony, ozark, kapsis/cli]
+import pkg/[bag, jsony, ozark]
+import pkg/kapsis/interactive/prompts
 
 import pkg/supranim/[core/paths, controller]
 import pkg/supranim/support/[auth, nanoid]

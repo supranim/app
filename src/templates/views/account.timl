@@ -1,24 +1,97 @@
-div.col-xl-8.col-md-8.col-11.mx-auto
-  div.card.p-0.rounded-4.overflow-hidden > div.row.h-100
-    div.col-lg-7 > div.p-5.my-5
-      h4.h1.fw-bold: "My account"
-      ul.nav.nav-underline.mb-3
-        li.nav-item > a.nav-link.active href="/account/edit?tab=personal": "Personal info"
-        li.nav-item > a.nav-link href="/account/edit?tab=security": "Security"
+style: """
+.svg svg {
+  width: 120px;
+  height: 120px;
+}
+"""
+var bgImage = "https://images.unsplash.com/photo-1563305096-9af2877f57f9?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+div.col-xl-6.col-md-8.col-11.mx-auto.my-5
+  div.card.p-0.rounded-4.overflow-hidden
+    div.card-header.border-0.bg-cover.pb-0 style="background-image: url('" & $bgImage & "'); background-position: center;"
+      div.position-relative style="z-index:1"
+        div.p-3.d-flex.justify-content-between
+          a.text-decoration-none.text-light href="/": "&#8592; Back to Homepage"
+          a.text-decoration-none.text-light href="/auth/logout": "Logout &#8594;"
+        div.d-flex.flex-column.align-items-center.text-center.position-relative
+          div.rounded-pill.border.border-4.shadow-lg.position-relative style="width: 90px; height: 90px;"
+            button.position-absolute.btn.btn-secondary.rounded-pill.border-0.py-0.px-1.end-0 style="font-size: 12px;": "Edit"
+            img.rounded-pill.img-fluid src="/assets/profile.png" alt="John Doe"
+          h3.fw-bold.mt-3.mb-0: "John Doe"
+          p.text-muted: "Joined on January 1, 2024"
+        ul.nav.nav-underline.mb-0.px-4
+          li.nav-item > a.nav-link.active href="/account": "Profile information"
+          li.nav-item > a.nav-link href="/account?tab=security": "Security settings"
+    
+    div.card-body.px-5.py-5 > div.row > div.col-11.mx-auto
+      //
+      // Security settings section
+      //
+      if contains(toString($this["path"]), "security"):
+        h4.fw-medium.border-start.border-primary.border-3.ps-2: "Security"
+        p.ps-3.text-muted: "Manage your security settings, such as changing your password and enabling two-factor authentication."
+        div.card.rounded-4.p-4.shadow-md.border-0.bg-black.bg-opacity-50
+          for $msg in $this["notifications_security"]:
+            div.alert.alert-info.border-0 > p.mb-0: $msg
+          form method="POST" action="/account/security"
+            div.mb-3
+              label.form-label: "Current password"
+              input.form-control.rounded-3 name="current_password" type="password" placeholder="Current password"
+            div.mb-3
+              label.form-label: "New password"
+              input.form-control name="new_password" type="password" placeholder="New password"
+            div.mb-3
+              label.form-label: "Confirm new password"
+              input.form-control name="confirm_password" type="password" placeholder="Confirm new password"
+            
+            input type="hidden" name="csrf" value=$this["csrf_profile"]
+            div.text-end.w-100 > button.btn.btn-sm.btn-secondary.rounded-3.fw-medium: "Save changes"
 
-      p: "Manage your account settings and set e-mail preferences."
-      form method="POST" action="/auth/login"
-        div.mb-3
-          label.form-label: "Your name"
-          input.form-control.rounded-3 name="name" type="text" placeholder="Your name"
-        div.mb-3
-          label.form-label: "Email address"
-          input.form-control name="email" type="email" placeholder="Email address"
+        h5.fw-medium.mt-5.border-start.border-primary.border-3.ps-2: "Two-factor authentication"
+        p.ps-3.text-muted: "Enhance the security of your account by enabling two-factor authentication (2FA)"
+        div.card.rounded-4.p-4.shadow-md.border-0.bg-black.bg-opacity-50
+          div.d-flex.justify-content-between.align-items-center
+            div
+              p: "Two-factor authentication adds an extra layer of security to your account by requiring a second form of verification in addition to your password."
+              div.form-check.form-switch.mt-3
+                input.form-check-input type="checkbox" id="enable2fa"
+                label.form-check-label for="enable2fa": "Enable 2FA"
+            div.svg.bg-white.p-1: $this["security"]["totpsvg"]
 
-      div.text-end.w-100 > a.btn.btn-dark href="/auth/logout": "Save changes"
-
-    div.col-lg-5.bg-cover.position-relative style="background-image:url(https://images.unsplash.com/photo-1726601057317-d3cbefb0d215?q=80&w=1750&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)"
-      div.d-flex.flex-column.h-100
-        div.d-flex.justify-content-center.align-items-center.h-100 > img src="/assets/supranim.png" alt="Supranim" width="100px" height="100px"
-        div.d-flex.justify-content-center.align-items-start.mb-3.position-relative style="z-index:1"
-          a.small.text-light.text-decoration-none target="_blank" href="https://unsplash.com/@perlamutrs": "@perlamutrs"
+      else:
+        // 
+        // Personal information section
+        // 
+        h4.fw-medium.border-start.border-primary.border-3.ps-2: "Profile information"
+        p.ps-3.text-muted: "Update your personal information, such as your name and email address."
+        div.card.rounded-4.p-4.shadow-md.border-0.bg-black.bg-opacity-50
+          for $msg in $this["notifications_profile"]:
+            div.alert.alert-info.border-0 > p.mb-0: $msg
+          form method="POST" action="/account/profile"
+            div.mb-3
+              label.form-label: "Your name"
+              input.form-control.rounded-3 name="name" type="text" placeholder="Your name" value=$this["user"]["name"]
+              div.form-text: "This is the name that will be displayed on your profile."
+            div.mb-3
+              label.form-label: "Email address"
+              input.form-control name="email" type="email" placeholder="Email address" value=$this["user"]["email"]
+            input type="hidden" name="csrf" value=$this["csrf_profile"]
+            div.text-end.w-100 > button.btn.btn-sm.btn-secondary.rounded-3.fw-medium: "Save changes"
+        
+        // Active sessions section
+        h4.mt-5.fw-medium.border-start.border-primary.border-3.ps-2: "Active sessions"
+        p.ps-3.text-muted: "Manage your active sessions and log out from other devices if needed."
+        div.card.rounded-4.p-4.shadow-md.border-0.bg-black.bg-opacity-50
+          ul.list-group.rounded-3
+            for $session in $this["sessions"]:
+              a.list-group-item.list-group-item-action.text-muted
+                div.d-flex.justify-content-between.align-items-center
+                  div > strong: "iPhone 12 Pro (iOS 14.4)"
+                  div: $session["last_access"]
+              a.list-group-item.list-group-item-action.text-muted
+                div.d-flex.justify-content-between.align-items-center
+                  div > strong: "MacBook Pro (Chrome on macOS)"
+                  div: $session["last_access"]
+              a.list-group-item.list-group-item-action.text-muted
+                div.d-flex.justify-content-between.align-items-center
+                  div > strong: "Windows 10 PC (Edge)"
+                  div: $session["last_access"]

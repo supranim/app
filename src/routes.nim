@@ -9,14 +9,20 @@ routes:
 
   get "/account" {.middleware: [authenticate].}
     # GET route links to `getAccount` controller
-    
+  
+  post "/account/profile" {.middleware: [authenticate].}
+    # POST route links to `postAccountProfile` controller
+
+  post "/account/security" {.middleware: [authenticate].}
+    # POST route links to `postAccountSecurity` controller
+
   get "/account/verify"
     # GET route links to `getAccountVerify` controller
 
   # Group routes under the `/auth` path for
   # authentication-related pages and actions
   group "/auth":
-    (get, post) -> "/login"
+    (get, post,) -> "/login"
       # GET and POST routes link to `getAuthLogin` and `postAuthLogin`
       # controllers respectively
     

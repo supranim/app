@@ -8,3 +8,9 @@ ctrl getHomepage:
   render("index", local = &*{
     "isAuth": false
   })
+
+ctrl getTest:
+  json("")
+
+ctrl getTestName:
+  json("")

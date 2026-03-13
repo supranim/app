@@ -7,7 +7,7 @@ div.col-xl-8.col-lg-9.col-md-8.col-12.mx-auto
           text text-anchor="start"
             textPath xlink:href="#textPath" fill="#fff" startOffset="0%": "Badass Web Framework"
     div.col-lg-7 > div.p-xl-5.p-lg-0.my-5 > div.ps-5.pe-0.pt-5
-      h4.display-5.fw-bold: "The Supranim Starter Kit"
+      h4.display-5.fw-bold: "Home-made<br>Starter Kit"
         small.p-1.badge.bg-primary.align-text-top style="font-size:.7rem": "v0.1.0"
       p.lead
         strong: "Thanks for trying Supranim"
@@ -26,8 +26,8 @@ div.col-xl-8.col-lg-9.col-md-8.col-12.mx-auto
                   img.rounded-pill.border.border-2 src="/assets/profile.png" alt="Supranim" width="48px" height="48px"
                   span.ms-2.fw-medium: "My account"
                 ul.dropdown-menu.rounded-4.shadow-lg style="font-size: .9rem"
-                  li > a.dropdown-item href="/account/edit?tab=personal": "Edit profile"
-                  li > a.dropdown-item href="/account/edit?tab=security": "Security"
+                  li > a.dropdown-item href="/account?tab=personal": "Edit profile"
+                  li > a.dropdown-item href="/account?tab=security": "Security"
                   li.dropdown-divider
                   li.nav-item > a.dropdown-item href="/auth/logout": "Log out"
             else:

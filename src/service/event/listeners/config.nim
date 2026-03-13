@@ -3,7 +3,7 @@
 
 import std/options
 import supranim/service/events
-import pkg/kapsis/cli
+import pkg/kapsis/interactive/prompts
 
 listener "app.autoload.middleware":
   if args.isSome():

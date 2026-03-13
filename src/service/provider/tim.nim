@@ -2,9 +2,10 @@ import std/[macros, critbits, json, os,
         strutils, sequtils, httpcore, strtabs, times]
 
 import pkg/supranim/[core/paths, support/slug]
-import pkg/supranim/core/servicemanager
+import pkg/supranim/core/services
 
-import pkg/[tim, kapsis/cli]
+import pkg/tim
+import pkg/kapsis/interactive/prompts
 
 export HttpCode, render, `&*`
 export times.now, times.format

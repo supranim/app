@@ -5,7 +5,6 @@
 # and sets up the necessary services and middlewares.
 #
 import std/times
-
 import pkg/supranim
 
 #
@@ -13,8 +12,6 @@ import pkg/supranim
 #
 App.init()
 
-# Define CLI commands for the application
-import pkg/kapsis/[runtime, cli]
 proc startCommand(v: Values) =
   ## Kapsis `init` command handler
   initStartCommand(v, createDirs = false)
@@ -30,6 +27,11 @@ App.cli do:
 # `config/` directory.
 #
 App.services do:
+
+  # Initialize the global event emitter service. This service provides a
+  # singleton event emitter that can be used throughout the application to
+  # emit and listen for custom events.
+  events.init()
 
   # init DB Engine
   db.init()
