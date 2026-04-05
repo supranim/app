@@ -22,12 +22,12 @@ requires "nim >= 2.0.0"
 requires "supranim#head"
 requires "supranim_session"
 requires "limiter#head"
+requires "emitter#head"
 requires "bag"
 requires "tim#head"
 requires "jsony"
 requires "zippy"
-
-requires "libffi"
+requires "twofa"
 
 task prod, "Generate a production build":
   # A production build task that compiles the main application

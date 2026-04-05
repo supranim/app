@@ -26,13 +26,13 @@ initService Tim[Global]:
 
       # predefine foreign functions
       timInstance.userScript.addProc("slugify", @[paramDef("s", ttyString)], ttyString,
-        proc (args: StackView): Value =
+        proc (args: StackView, argc: int): Value =
           ## Convert a string to a URL-friendly slug
           return initValue(slugify(args[0].stringVal[]))
         )
 
       timInstance.userScript.addProc("dashboard", @[paramDef("x", ttyString)], ttyString,
-        proc (args: StackView): Value =
+        proc (args: StackView, argc: int): Value =
           # prefix a link with `/dashboard/`
           return initValue("/dashboard/" & args[0].stringVal[])
         )

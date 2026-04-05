@@ -1,5 +1,0 @@
-
-middlewares:
-  base_middlewares:
-    - limitChecker
-    - uriChecker  

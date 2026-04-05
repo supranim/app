@@ -10,6 +10,10 @@ html[data-bs-theme='light']:root {
   --fg-color: #282828;
 }
 
+::selection {
+  background: #0b8c475d;
+}
+
 body {
   background-color:var(--bg-color);
   color: var(--fg-color);

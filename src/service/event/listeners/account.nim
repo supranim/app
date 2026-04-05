@@ -1,6 +1,6 @@
 import std/[options, tables, times, strformat, json, os]
 
-import pkg/ozark
+import pkg/[ozark, twofa]
 import pkg/kapsis/interactive/prompts
 
 import pkg/supranim/service/events
@@ -101,16 +101,18 @@ listener "account.register":
       # check if the user already exists
       # if so, abort the registration process
       if anyUser.isEmpty() == false: return
-      
+
       # otherwise, create a new user account
       # and store it in the database.
       let (pk, sk) = auth.boxKeys()
+      let totpSecret = boxEncrypt(boxRandomBytes().bin2hex, pk, sk)
       let userId = Models.table(Users).insert({
           "name": nanoid.generate(size = 12),
           "username": nanoid.generate(size = 32),
           "email": fields[0],
           "pk": pk,
           "sk": sk,
+          "totp_secret": twofa.genTotpUri(totpSecret, "MyApp", "MyCompany"),
           "password": auth.hashPassword(fields[1]),
           "created_at": $(now())
         }).execGet()

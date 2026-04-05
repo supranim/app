@@ -3,6 +3,7 @@ when defined(macosx):
   --passL:"/opt/local/lib/libcrypto.a"
   --passL:"/opt/local/lib/libevent.a"
   --passL:"/opt/local/lib/libevent_pthreads.a"
+  --passL:"/usr/local/lib/libmonocypher.a"
   --passC:"-I /opt/local/include"
 elif defined(linux):
   --passL:"/usr/local/lib/libssl.so"
