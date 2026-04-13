@@ -23,7 +23,7 @@ initService DB[Global]:
 
   client do:
     proc init*() =
-      loadEnvStatic()
+      loadEnv()
       ozark.initOzarkDatabase(
         address = getEnv("database.address"),
         name = getEnv("database.name"),

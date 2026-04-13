@@ -22,7 +22,7 @@ routes:
   # Group routes under the `/auth` path for
   # authentication-related pages and actions
   group "/auth":
-    (get, post,) -> "/login"
+    (get, post) -> "/login"
       # GET and POST routes link to `getAuthLogin` and `postAuthLogin`
       # controllers respectively
     
